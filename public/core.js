@@ -20,7 +20,9 @@ TodoApp.controller("TodosCtrl", [
     $scope.fadetask = true;
     $scope.notice = "Edit";
     $scope.getTodos = function() {
+      console.log("getTodos")
       return $http.get("/api/tasks").success(function(data) {
+        console.log("inside getTodos", data)
         var i, _i, _j, _len, _len1, _ref, _ref1, _results;
         $scope.todos = data;
         _ref = $scope.todos;
@@ -94,7 +96,7 @@ TodoApp.controller("TodosCtrl", [
         conf = confirm("Complete this task?");
         if (conf) {
           $scope["completecheckbox" + task.id] = true;
-          return $http.put("/todos/" + task.id + ".json", task).success(function(data) {});
+          return $http.put("/api/tasks/" + task.id, task).success(function(data) {});
         }
       }
     };

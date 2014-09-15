@@ -18,7 +18,6 @@ app.get('/api/tasks', function(req, res) {
 })
 
 app.post('/api/tasks', function(req, res) {
-  console.log('in apitasks post', req.body.task)
   db.task.create(req.body.task).success(function(newTask) {
     res.json(newTask)
   })
