@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false
       },
       complete: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       }
     })
     .complete(done);

@@ -34,7 +34,7 @@ TodoApp.controller("TodosCtrl", [
         _results = [];
         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
           i = _ref1[_j];
-          if (i.complete === 1) {
+          if (i.complete === '1') {
             _results.push($scope["completecheckbox" + i.id] = true);
           } else {
             _results.push(void 0);
@@ -91,8 +91,8 @@ TodoApp.controller("TodosCtrl", [
     return $scope.completeTodo = function(task) {
       var conf;
       console.log(task);
-      if (task.complete !== 1) {
-        task.complete = 1;
+      if (task.complete !== '1') {
+        task.complete = '1';
         conf = confirm("Complete this task?");
         if (conf) {
           $scope["completecheckbox" + task.id] = true;
