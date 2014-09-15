@@ -61,6 +61,10 @@ li {
   border-radius: 3px;
   box-shadow: 2px 2px 2px #E7C6A5;
   margin-bottom: 40px;
+  height: 580px;
+  overflow: scroll;
+  box-shadow: inset 0px -10px 8px #CDAF95;
+  border: 1px solid #CDAF95;
 }
 .btnaction {
   margin-top: 10px;
