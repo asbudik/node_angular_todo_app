@@ -1,9 +1,9 @@
-TodoApp = angular.module("TodoApp", ["ngRoute", "templates"])
+TodoApp = angular.module("TodoApp", ["ngRoute"])
 
 TodoApp.config ["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
   $routeProvider
     .when '/',
-      templateUrl: "index.html",
+      templateUrl: "spa.html",
       controller: "TodosCtrl"
   .otherwise
     redirectTo: "/"
@@ -25,7 +25,7 @@ TodoApp.controller "TodosCtrl", ["$scope", "$http", ($scope, $http) ->
         $scope["completecheckbox" + i.id] = false
 
       for i in $scope.todos
-        if i.complete == 1
+        if i.complete == '1'
           $scope["completecheckbox" + i.id] = true
 
 
@@ -74,8 +74,8 @@ TodoApp.controller "TodosCtrl", ["$scope", "$http", ($scope, $http) ->
 
   $scope.completeTodo = (task) ->
     console.log(task)
-    if task.complete != 1
-      task.complete = 1
+    if task.complete != '1'
+      task.complete = '1'
       conf = confirm("Complete this task?")
       if conf
 

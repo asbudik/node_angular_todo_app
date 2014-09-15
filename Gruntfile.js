@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'js/coffcompile.js': 'todo_app_angular_node/public/coffee/app.js.coffee' // 1:1 compile
+          '../todo_app_angular_node/public/js/coffcompile.js': '../todo_app_angular_node/public/coffee/app.js.coffee' // 1:1 compile
         }
       }
     }
@@ -16,5 +16,6 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'coffee');
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
 };
