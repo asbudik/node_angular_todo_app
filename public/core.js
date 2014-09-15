@@ -1,7 +1,18 @@
 var TodoApp;
 
-TodoApp = angular.module("TodoApp", []);
+TodoApp = angular.module("TodoApp", ["ngRoute"]);
 
+TodoApp.config([
+  "$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
+    $routeProvider.when('/', {
+      templateUrl: "spa.html",
+      controller: "TodosCtrl"
+    }).otherwise({
+      redirectTo: "/"
+    });
+    return $locationProvider.html5Mode(true).hashPrefix("#");
+  }
+]);
 
 TodoApp.controller("TodosCtrl", [
   "$scope", "$http", function($scope, $http) {
@@ -87,5 +98,11 @@ TodoApp.controller("TodosCtrl", [
         }
       }
     };
+  }
+]);
+
+TodoApp.config([
+  "$httpProvider", function($httpProvider) {
+    return $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
   }
 ]);
