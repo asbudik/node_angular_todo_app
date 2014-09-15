@@ -43,7 +43,7 @@ TodoApp.controller("TodosCtrl", [
     };
     $scope.getTodos();
     $scope.addTodo = function() {
-      console.log($scope.newTodo);
+      console.log("hooba", $scope.newTodo);
       return $http.post("/api/tasks", $scope.newTodo).success(function(data) {
         $scope.newTodo = {};
         return $scope.todos.push(data);

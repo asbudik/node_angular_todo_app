@@ -4,10 +4,12 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var db = require("./models/index.js")
+var restful = require('sequelize-restful')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+
 
 app.get('/api/tasks', function(req, res) {
   db.task.findAll({order: [['createdAt', 'DESC']]}).success(function(allTasks) {
@@ -16,6 +18,7 @@ app.get('/api/tasks', function(req, res) {
 })
 
 app.post('/api/tasks', function(req, res) {
+  console.log('in apitasks post', req.body.task)
   db.task.create(req.body.task).success(function(newTask) {
     res.json(newTask)
   })
