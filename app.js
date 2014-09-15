@@ -8,7 +8,10 @@ var restful = require('sequelize-restful')
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());                   // parse application/json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride("_method"));
+app.use(morgan('dev'))
 
 
 app.get('/api/tasks', function(req, res) {
@@ -18,7 +21,7 @@ app.get('/api/tasks', function(req, res) {
 })
 
 app.post('/api/tasks', function(req, res) {
-  db.task.create(req.body.task).success(function(newTask) {
+  db.task.create(req.body).success(function(newTask) {
     res.json(newTask)
   })
 })
@@ -31,7 +34,9 @@ app.delete('/api/tasks/:id', function(req, res) {
 
 app.put('/api/tasks/:id', function(req, res) {
   db.task.find(req.params.id).success(function(foundTask) {
-    res.json(foundTask.updateAttributes(req.body.task))
+    foundTask.updateAttributes(req.body).success(function() {
+      res.json(foundTask)
+    })
   })
 })
 
